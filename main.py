@@ -5,7 +5,10 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from auth import router as auth
 from models import router as models
-uri = "mongodb+srv://aarush:Kv097f8P1vXZdM65@cluster0.nxphn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+import os
+import keys
+
+uri = keys.MONGO_URI
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
 

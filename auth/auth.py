@@ -13,8 +13,9 @@ from passlib.hash import sha256_crypt
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 from datetime import timedelta, datetime
+import keys
 
-uri = "mongodb+srv://aarush:Kv097f8P1vXZdM65@cluster0.nxphn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+uri = keys.MONGO_URI
 # Create a new client and connect to the server
 client = AsyncMongoClient(uri)
 db = client.BookRead
@@ -23,8 +24,8 @@ PyObjectId = Annotated[str, BeforeValidator(str)]
 
 router = APIRouter()
 
-SECRET_KEY = 'L3UyFYhcsv2LxbDHxJTUTII3mjTKwKw4'
-ALGORITHM = 'HS256'
+SECRET_KEY = keys.SECRET_KEY
+ALGORITHM = keys.ALGORITHM
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 oauth2_bearer = OAuth2PasswordBearer(tokenUrl='auth/login')

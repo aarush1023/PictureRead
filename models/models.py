@@ -1,14 +1,11 @@
 from fastapi import APIRouter, UploadFile, File, Depends
 from fastapi.responses import JSONResponse
-import base64
 from PIL import Image
 import torch
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from typing import Annotated
 from auth import get_current_user
 from io import BytesIO
-
-
 
 
 router = APIRouter()
