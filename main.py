@@ -5,7 +5,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from auth import router as auth
 from models import router as models
-import os
+from mangum import Mangum
 import keys
 
 uri = keys.MONGO_URI
@@ -13,6 +13,7 @@ uri = keys.MONGO_URI
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 api = FastAPI()
+handler = Mangum(api)
 api.include_router(auth, prefix='/auth')
 api.include_router(models, prefix='/model')
 
